@@ -1,0 +1,48 @@
+{
+  "name": "r3f-infinite-terrain",
+  "version": "0.0.1",
+  "description": "Infinite Terrain for React-Three-Fiber",
+  "type": "module",
+  "main": "build/index.js",
+  "module": "build/index.es.js",
+  "jsnext:main": "build/index.es.js",
+  "scripts": {
+    "build": "rollup -c",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zackdove/r3f-infinite-terrain.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "files": [
+    "build"
+  ],
+  "bugs": {
+    "url": "https://github.com/zackdove/r3f-infinite-terrain/issues"
+  },
+  "homepage": "https://github.com/zackdove/r3f-infinite-terrain#readme",
+  "devDependencies": {
+    "@types/jest": "^29.5.1",
+    "@types/react": "^18.2.0",
+    "@types/react-test-renderer": "^18.0.0",
+    "jest": "^29.5.0",
+    "react-test-renderer": "^18.2.0",
+    "rollup": "^3.21.3",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-typescript2": "^0.34.1",
+    "ts-jest": "^29.1.0",
+    "typescript": "^5.0.4"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}
