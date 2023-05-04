@@ -2,7 +2,7 @@ import { useLoader } from "@react-three/fiber";
 import React from "react";
 import { useRef } from "react";
 import * as THREE from "three";
-import { TextureLoader } from "three/src/loaders/TextureLoader";
+import { TextureLoader } from "three/src/loaders/TextureLoader.js";
 
 export default function Sky(props: JSX.IntrinsicElements["mesh"]) {
   const ref = useRef<THREE.Mesh>(null!);

@@ -3,8 +3,8 @@ import { useRef, useState } from "react";
 import * as THREE from "three";
 
 import { PerspectiveCamera } from "@react-three/drei";
-import Sky from "../Sky/Sky";
-import Terrain from "../Terrain/Terrain";
+import Sky from "../Sky/Sky.js";
+import Terrain from "../Terrain/Terrain.js";
 import React from "react";
 
 function Box(props: JSX.IntrinsicElements["mesh"]) {
@@ -31,11 +31,7 @@ function Box(props: JSX.IntrinsicElements["mesh"]) {
   );
 }
 
-export default function TerrainScene({
-  mouse,
-}: {
-  mouse: { x: number; y: number };
-}) {
+export function TerrainScene({ mouse }: { mouse: { x: number; y: number } }) {
   const cameraRef = useRef<THREE.PerspectiveCamera>(null!);
   const smoothMouse = { x: 0.5, y: 0.5 };
   const center = new THREE.Vector3(205, 135, 0);

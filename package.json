@@ -21,18 +21,16 @@
       "cjs"
     ],
     "entry": [
-      "src/**/*.ts"
+      "src/**/*.ts?(x)"
     ]
   },
   "dependencies": {
     "@react-three/drei": "^9.66.1",
-    "@react-three/fiber": "^8.13.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "@types/three": "^0.151.0",
     "leva": "^0.9.34",
-    "r3f-infinite-terrain": "file:..",
     "react-dom": "^18.2.0",
     "react-scripts": "^5.0.1",
     "three": "^0.152.2",
@@ -49,8 +47,7 @@
   },
   "eslintConfig": {
     "extends": [
-      "react-app",
-      "react-app/jest"
+      "react-app"
     ]
   },
   "browserslist": {
@@ -67,9 +64,13 @@
   },
   "devDependencies": {
     "@types/node": "^18.16.3",
-    "react": "^18.2.0",
-    "react-three-fiber": "^6.0.13",
     "tsup": "^6.7.0",
     "typescript": "^5.0.4"
+  },
+  "peerDependencies": {
+    "@react-three/fiber": ">=8.0",
+    "react": ">=18.0",
+    "react-dom": ">=18.0",
+    "three": ">=0.138"
   }
 }

@@ -1,10 +1,10 @@
 import { useEffect, useRef } from "react";
 import * as THREE from "three";
 import { useLoader } from "@react-three/fiber";
-import { TextureLoader } from "three/src/loaders/TextureLoader";
-import { Fragment } from "./fragment";
-import { Vertex } from "./vertex";
-import noise from "./noise";
+import { TextureLoader } from "three/src/loaders/TextureLoader.js";
+import { Fragment } from "./fragment.js";
+import { Vertex } from "./vertex.js";
+import noise from "./noise.js";
 import React from "react";
 
 export default function Terrain({
