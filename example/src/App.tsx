@@ -1,6 +1,8 @@
 import { Canvas } from "@react-three/fiber";
 import TerrainScene from "./components/TerrainScene/TerrainScene";
 // import Atmosphere from "./components/Atmosphere/Atmosphere";
+import "./App.css";
+import { Stats } from "@react-three/drei";
 
 export default function App() {
   const mouse = { x: 0, y: 0 };
@@ -12,6 +14,7 @@ export default function App() {
           Math.pow(window.innerHeight - e.clientY, 2) / window.innerHeight;
       }}
     >
+      <Stats showPanel={0} className="stats" />
       <TerrainScene mouse={mouse} />
     </Canvas>
   );

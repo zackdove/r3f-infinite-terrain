@@ -1,4 +1,4 @@
-import { useFrame } from "@react-three/fiber";
+import { useFrame, useThree } from "@react-three/fiber";
 import { useRef, useState } from "react";
 import * as THREE from "three";
 
@@ -38,35 +38,38 @@ export default function TerrainScene({
   const cameraRef = useRef<THREE.PerspectiveCamera>(null!);
   const smoothMouse = { x: 0, y: 0 };
   const center = new THREE.Vector3(205, 135, 0);
-  const offset = new THREE.Vector3(450, 300, 100);
+
+  const smooth = 0.02;
+  const look = new THREE.Vector3();
+  const across = new THREE.Vector3();
 
   useFrame(({ clock }) => {
-    var smooth = 0.02;
     smoothMouse.x += smooth * (mouse.x - smoothMouse.x);
     smoothMouse.y += smooth * (mouse.y - smoothMouse.y);
 
-    const time = 0.5 * clock.elapsedTime;
-    cameraRef.current.position.x = 450 * Math.cos(time / 3) + center.x;
-    cameraRef.current.position.y = 250 * Math.sin(time / 4) + center.y + 500;
+    cameraRef.current.position.x =
+      450 * Math.cos(clock.elapsedTime / 6) + center.x;
+    cameraRef.current.position.y =
+      250 * Math.sin(clock.elapsedTime / 8) + center.y + 500;
     cameraRef.current.position.z = Math.min(smoothMouse.y / 2 + 5, 500);
-    cameraRef.current.up = new THREE.Vector3(0, 0, 1);
+    cameraRef.current.up.set(0, 0, 1);
     cameraRef.current.lookAt(center);
     //camera.position.z = 30 + 260 * Math.pow( Math.sin( time ), 4 );
 
     // Look left right
-    const look = center.clone();
+    look.copy(center);
     look.sub(cameraRef.current.position);
     look.normalize();
     look.multiplyScalar(50);
-    var across = new THREE.Vector3().crossVectors(look, cameraRef.current.up);
+    across.crossVectors(look, cameraRef.current.up);
     across.multiplyScalar(smoothMouse.x / 333);
     cameraRef.current.position.add(across);
-    //camera.up = new THREE.Vector3( 1, 0, 1 );
     cameraRef.current.up.add(across.multiplyScalar(-0.005));
     cameraRef.current.lookAt(center);
-    offset.x = cameraRef.current.position.x;
-    offset.y = cameraRef.current.position.y;
   });
+  const scene = useThree((state) => state.scene);
+  scene.fog = new THREE.Fog(0x000000, 200, 1000);
+
   return (
     <>
       <PerspectiveCamera
@@ -84,7 +87,7 @@ export default function TerrainScene({
         worldWidth={1024}
         levels={4}
         tileResolution={64}
-        offset={offset}
+        cameraRef={cameraRef}
       />
       {/* <Atmosphere /> */}
       <Box position={[-1.2, 0, 0]} />

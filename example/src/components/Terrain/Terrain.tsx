@@ -10,12 +10,12 @@ export default function Terrain({
   worldWidth = 1024,
   levels = 4,
   tileResolution = 64,
-  offset,
+  cameraRef,
 }: {
   worldWidth: number;
   levels: number;
   tileResolution: number;
-  offset: THREE.Vector3;
+  cameraRef: React.MutableRefObject<THREE.PerspectiveCamera>;
 }) {
   const Edge = {
     NONE: 0,
@@ -26,15 +26,13 @@ export default function Terrain({
   };
 
   const noiseMap = noise();
-  console.log(noiseMap);
+  // console.log(noiseMap);
   function TileMaterial({
-    globalOffset,
     offset,
     scale,
     // tileResolution,
     edgeMorph,
   }: {
-    globalOffset: THREE.Vector3;
     offset: THREE.Vector2;
     scale: number;
     tileResolution: number;
@@ -44,22 +42,23 @@ export default function Terrain({
     rockMap.wrapS = rockMap.wrapT = THREE.RepeatWrapping;
     const uniforms = {
       uEdgeMorph: { type: "i", value: edgeMorph },
-      uGlobalOffset: { type: "v3", value: globalOffset },
+      uGlobalOffset: { type: "v3", value: null },
       //uGrass: { type: "t", value: texture.grass },
       uHeightData: { type: "sampler2d", value: null },
       //uSnow: { type: "t", value: texture.snow },
       uTileOffset: { type: "v2", value: offset },
       uScale: { type: "f", value: scale },
     };
+
     return (
       <shaderMaterial
         extensions={{
           derivatives: true,
           fragDepth: false,
           drawBuffers: false,
-          shaderTextureLOD: false,
+          shaderTextureLOD: true,
         }}
-        transparent={true}
+        transparent={false}
         fragmentShader={Fragment}
         vertexShader={Vertex}
         uniforms={uniforms}
@@ -88,16 +87,21 @@ export default function Terrain({
         meshRef.current.rotation.set(0, 0, 0);
         meshRef.current.scale.set(1, 1, 1);
         meshRef.current.updateMatrix();
-        console.log(meshRef.current);
+        // console.log(meshRef.current);
         const material = meshRef.current.material as THREE.ShaderMaterial;
+        material.uniforms.uGlobalOffset.value = cameraRef.current.position;
         material.uniforms.uHeightData.value = noiseMap;
         material.needsUpdate = true;
       }
     }, [meshRef]);
+    // useFrame(() => {
+    //   // const material = meshRef.current.material as THREE.ShaderMaterial;
+    //   // material.uniforms.uGlobalOffset.value = cameraRef.current.position;
+    //   // material.needsUpdate = true;
+    // });
     return (
       <mesh ref={meshRef}>
         <TileMaterial
-          globalOffset={offset}
           offset={new THREE.Vector2(x, y)}
           scale={scale}
           tileResolution={tileResolution}
@@ -163,6 +167,7 @@ export default function Terrain({
 
   return (
     <mesh>
+      <fog attach="fog" color="hotpink" near={200} far={1000} />
       <Tile
         x={-initialScale}
         y={-initialScale}
