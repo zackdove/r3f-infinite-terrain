@@ -5,6 +5,7 @@ import { TextureLoader } from "three/src/loaders/TextureLoader";
 import { Fragment } from "./fragment";
 import { Vertex } from "./vertex";
 import noise from "./noise";
+import React from "react";
 
 export default function Terrain({
   worldWidth = 1024,

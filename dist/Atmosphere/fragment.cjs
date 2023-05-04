@@ -1,4 +1,6 @@
-export const Fragment = `uniform vec3 uHorizonColor;
+'use strict';
+
+const Fragment = `uniform vec3 uHorizonColor;
 uniform vec3 uSkyColor;
 
 varying float vDistance;
@@ -9,3 +11,5 @@ void main() {
   vec3 color = mix( uHorizonColor, uSkyColor, blend );
   gl_FragColor = vec4( color, 1.0 );
 }`;
+
+exports.Fragment = Fragment;

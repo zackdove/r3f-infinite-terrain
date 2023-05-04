@@ -1,4 +1,4 @@
-export const Fragment = `
+const Fragment = `
 uniform float uScale;
 uniform sampler2D uHeightData;
 
@@ -98,3 +98,5 @@ void main() {
 
   gl_FragColor = vec4(color, 1.0);
 }`;
+
+export { Fragment };

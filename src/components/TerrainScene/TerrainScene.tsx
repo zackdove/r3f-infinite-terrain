@@ -5,6 +5,7 @@ import * as THREE from "three";
 import { PerspectiveCamera } from "@react-three/drei";
 import Sky from "../Sky/Sky";
 import Terrain from "../Terrain/Terrain";
+import React from "react";
 
 function Box(props: JSX.IntrinsicElements["mesh"]) {
   // This reference will give us direct access to the THREE.Mesh object
@@ -82,7 +83,7 @@ export default function TerrainScene({
       <ambientLight intensity={0.5} />
       <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
       <pointLight position={[-10, -10, -10]} />
-      <Sky position={[0, 0, 250]} />
+      <Sky position={[0, 0, 0]} />
       <Terrain
         worldWidth={1024}
         levels={4}

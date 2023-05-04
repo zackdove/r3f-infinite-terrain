@@ -4,6 +4,7 @@ import * as THREE from "three";
 
 import { Fragment } from "./fragment";
 import { Vertex } from "./vertex";
+import React from "react";
 
 export default function Atmosphere(props: JSX.IntrinsicElements["mesh"]) {
   const ref = useRef<THREE.Mesh>(null!);

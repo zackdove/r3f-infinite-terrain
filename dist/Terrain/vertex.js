@@ -1,4 +1,4 @@
-export const Vertex = `uniform vec3 uGlobalOffset;
+const Vertex = `uniform vec3 uGlobalOffset;
 uniform sampler2D uHeightData;
 uniform vec2 uTileOffset;
 uniform float uScale;
@@ -107,3 +107,5 @@ void main() {
   //vNormal = normal;
   gl_Position = projectionMatrix * modelViewMatrix * vec4(vPosition, 1.0);
 }`;
+
+export { Vertex };

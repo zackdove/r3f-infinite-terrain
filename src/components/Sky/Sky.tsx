@@ -1,4 +1,5 @@
 import { useLoader } from "@react-three/fiber";
+import React from "react";
 import { useRef } from "react";
 import * as THREE from "three";
 import { TextureLoader } from "three/src/loaders/TextureLoader";
