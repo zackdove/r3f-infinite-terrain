@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/zackdove/r3f-infinite-terrain#readme",
   "devDependencies": {
+    "@rollup/plugin-typescript": "^11.1.0",
     "@types/jest": "^29.5.1",
     "@types/react": "^18.2.0",
     "@types/react-test-renderer": "^18.0.0",
@@ -42,7 +43,10 @@
     "testEnvironment": "node"
   },
   "dependencies": {
+    "@react-three/drei": "^9.66.1",
+    "@react-three/fiber": "^8.13.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "tslib": "^2.5.0"
   }
 }

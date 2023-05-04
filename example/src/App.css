@@ -1,6 +1,15 @@
+body {
+  overflow: hidden;
+  overscroll-behavior: none;
+  overscroll-behavior-y: hidden;
+}
+
 .App {
   text-align: center;
   background-color: #000;
+  overflow: hidden;
+  overscroll-behavior: none;
+  overscroll-behavior-y: hidden;
 }
 
 .App-logo {
